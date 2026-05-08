@@ -18,6 +18,7 @@ const errorHandler = require("./Middlewares/errorHandling");
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
+  "https://ecommerce-arvind-client.vercel.app"
 ];
 
 app.use(
