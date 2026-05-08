@@ -28,18 +28,18 @@ app.use(
     },
     methods: ["GET", "POST", "DELETE", "PATCH"],
     credentials: true,
-  })
+  }),
 );
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const userRoute = require("./Route/userRoute");
 const productRoute = require("./Route/Admin/productRoute");
 
 connectDB();
-configCloudinary(); 
+configCloudinary();
 
 app.get("/", (req, res) => {
   res.send("Hello from ecommerce api!");
@@ -49,14 +49,10 @@ app.use("/user", userRoute);
 app.use("/product", productRoute);
 app.use(errorHandler);
 
-
-if (process.env.NODE_ENV !== "production") {
-  connection.on("connected", () => {
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
+connection.on("connected", () => {
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
   });
-}
-
+});
 
 module.exports = app;
