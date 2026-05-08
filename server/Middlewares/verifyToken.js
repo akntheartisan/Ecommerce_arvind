@@ -6,12 +6,6 @@ const adminLogin = require("../Models/adminSchema");
 exports.verifyToken = async (req, res, next) => {
   const token = req.cookies.taylorAccessToken || req.cookies.adminAccessToken;
   const modal = req.cookies.adminAccessToken ? adminLogin : userlogin;
-  const query = req.cookies.adminAccessToken
-    ? {
-        username: tokenAccessVerify.username,
-        admin: true,
-      }
-    : { username: tokenAccessVerify.username };
 
   try {
     if (!token) {
@@ -22,6 +16,13 @@ exports.verifyToken = async (req, res, next) => {
       token,
       process.env.ACCESS_TOKEN_SECRET,
     );
+
+    const query = req.cookies.adminAccessToken
+      ? {
+          username: tokenAccessVerify.username,
+          admin: true,
+        }
+      : { username: tokenAccessVerify.username };
 
     let userCheck = await modal.findOne(query);
 

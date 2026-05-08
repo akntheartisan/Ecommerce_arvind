@@ -50,7 +50,7 @@ connectDB();
 
 //routes
 app.get("/", (req, res) => {
-  res.send("Hello from genesys api!");
+  res.send("Hello from ecommerce api!");
 });
 
 app.use("/user",userRoute)
