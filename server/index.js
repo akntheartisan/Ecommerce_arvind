@@ -15,22 +15,26 @@ const connectDB = require("./Config/DB");
 
 const errorHandler = require("./Middlewares/errorHandling");
 
-//middlewares
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+];
+
 app.use(
   cors({
     origin: function (origin, cb) {
-      if (!origin || origin.includes("localhost")) {
-        cb(null, origin);
-        return;
+      if (!origin) return cb(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return cb(null, true);
       }
 
-      cb(new Error("Block by CORS"), null);
+      return cb(new Error("Blocked by CORS"));
     },
     methods: ["GET", "POST", "DELETE", "PATCH"],
-    optionsSuccessStatus: 200,
     credentials: true,
   }),
-);
+)
 
 app.use(express.json());
 app.use(express.urlencoded());

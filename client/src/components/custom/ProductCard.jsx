@@ -6,7 +6,6 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { productFetch } from "@/store/slice/productSlice";
-import { useDispatch, useSelector } from "react-redux";
 import client from "@/config/api";
 
 export function ProductCard({ product }) {
