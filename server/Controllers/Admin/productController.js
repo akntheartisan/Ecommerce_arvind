@@ -2,7 +2,7 @@ const AppError = require("../../Middlewares/appError");
 const productModal = require("../../Models/productSchema");
 const uploadImage = require("../../Utils/uploadImage");
 
-const productAdd = async (req, res) => {
+const productAdd = async (req, res, next) => {
   console.log(req.body);
   console.log(req.files);
 
@@ -26,7 +26,7 @@ const productAdd = async (req, res) => {
   }
 };
 
-const productGet = async (req, res) => {
+const productGet = async (req, res, next) => {
   try {
     const response = await productModal.find();
 
